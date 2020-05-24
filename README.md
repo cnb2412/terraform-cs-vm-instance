@@ -1,4 +1,4 @@
-# Cloudstack Instance (VM) Terraform module
+# Apache Cloudstack Instance (VM) Terraform module
 
 Terraform module which creates instances (VMs) in CloudStack environments
 
