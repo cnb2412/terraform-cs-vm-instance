@@ -23,6 +23,11 @@ variable "zone" {
   type        = string
 }
 
+variable "network_id" {
+  description = "The ID of the network to connect this instance to. Changing this forces a new resource to be created."
+  type        = string
+}
+
 # --------------------------------------------------------------------------
 # OPTIONAL PARAMETERS
 # These parameters have reasonable defaults.
@@ -46,15 +51,21 @@ variable "sshkey_name" {
   default     = ""
 }
 
-variable "network_id" {
-  description = "The ID of the network to connect this instance to. Changing this forces a new resource to be created."
-  type        = string
-  default     = ""
-}
-
 variable "root_disk_size" {
   description = "The size of the root disk in gigabytes."
   type        = number
   default     = 0
+}
+
+variable "assign_public_ip" {
+  default     = false
+  description = "Assign a public IP via static NAT."
+  type        = bool
+}
+
+variable "vpc_id" {
+  description = "The ID of the VPC. Required if assign_public_ip is true"
+  type        = string
+  default     = ""
 }
 

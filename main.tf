@@ -17,4 +17,12 @@ resource "cloudstack_instance" "this" {
   zone             = var.zone
   network_id       = var.network_id
   root_disk_size   = var.root_disk_size
+  expunge          = true
+}
+
+resource "cloudstack_ipaddress" "this-ips" {
+  count      = var.instance_count
+  network_id = var.network_id
+  zone       = var.zone
+  vpc_id     = var.vpc_id
 }
