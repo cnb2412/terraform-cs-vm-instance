@@ -26,3 +26,9 @@ resource "cloudstack_ipaddress" "this-ips" {
   zone       = var.zone
   vpc_id     = var.vpc_id
 }
+
+resource "cloudstack_static_nat" "default" {
+  count              = var.instance_count
+  ip_address_id      = cloudstack_ipaddress.this-ips[count.index].id
+  virtual_machine_id = cloudstack_instance.this[count.index].id
+}
