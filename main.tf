@@ -9,7 +9,7 @@ terraform {
 resource "cloudstack_instance" "this" {
   count            = var.instance_count
   display_name     = var.name
-  name             = var.name
+  name             = var.instance_count <= 1 ? var.name : "${var.name}-${count.index}"
   template         = var.template
   service_offering = var.serviceoffering
   keypair          = var.sshkey_name
