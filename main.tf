@@ -20,6 +20,16 @@ resource "cloudstack_instance" "this" {
   expunge          = true
 }
 
+resource "cloudstack_disk" "this-disk" {
+  count              = var.instance_count * var.data_disks
+  name               = "${var.name}-${floor(count.index / var.data_disks)}-disk-${count.index % var.data_disks}"
+  disk_offering      = var.disk_offering
+  zone               = var.zone
+  attach             = true
+  size               = var.disk_sizes[count.index % var.data_disks]
+  virtual_machine_id = cloudstack_instance.this[floor(count.index / var.data_disks)].id
+}
+
 resource "cloudstack_ipaddress" "this-ips" {
   count      = var.instance_count
   network_id = var.network_id

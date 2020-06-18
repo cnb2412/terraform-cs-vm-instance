@@ -7,6 +7,7 @@ These types of resources are supported:
 * [CS instance](https://www.terraform.io/docs/providers/cloudstack/r/instance.html)
 * [CS ipaddress](https://www.terraform.io/docs/providers/cloudstack/r/ipaddress.html)
 * [CS static NAT](https://www.terraform.io/docs/providers/cloudstack/r/static_nat.html)
+* [CS disk](https://www.terraform.io/docs/providers/cloudstack/r/disk.html)
 
 ## Usage
 
@@ -21,7 +22,9 @@ module "cs_instance_cluster" {
   zone             = "Zone-1"
   serviceoffering  = "small"
   assign_public_ip = true
-
+  data_disks = 2
+  disk_offering = "my-disk-offering"
+  disk_sizes  = [100,200]
   
   # optional parameter
   keypair          = "my-ssh-key"
@@ -49,6 +52,9 @@ module "cs_instance_cluster" {
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | assign\_public\_ip | Assign a public IP via static NAT. | `bool` | `false` | no |
+| data\_disks | Number of additional data disks. | `number` | `0` | no |
+| disk\_offering | Disk offering that should be used. | `string` | `""` | no |
+| disk\_sizes | Sizes of data disks. | `list(number)` | `[]` | no |
 | instance\_count | Number of instances to launch | `number` | `1` | no |
 | name | Name to be used on all resources as prefix | `string` | n/a | yes |
 | network\_id | The ID of the network to connect this instance to. Changing this forces a new resource to be created. | `string` | n/a | yes |

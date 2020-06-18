@@ -69,3 +69,20 @@ variable "vpc_id" {
   default     = ""
 }
 
+variable "data_disks" {
+  description = "Number of additional data disks."
+  type        = number
+  default     = 0
+}
+
+variable "disk_sizes" {
+  description = "Sizes of data disks."
+  type        = list(number)
+  default     = []
+}
+
+variable "disk_offering" {
+  description = "Disk offering that should be used."
+  type        = string
+  default     = ""
+}
