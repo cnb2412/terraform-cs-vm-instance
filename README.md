@@ -40,7 +40,6 @@ module "cs_instance_cluster" {
 | Name | Version |
 |------|---------|
 | terraform | >= 0.13 |
-| terraform | >= 0.13 |
 
 ## Providers
 
@@ -57,6 +56,7 @@ module "cs_instance_cluster" {
 | disk\_offering | Disk offering that should be used. | `string` | `""` | no |
 | disk\_sizes | Sizes of data disks. | `list(number)` | `[]` | no |
 | instance\_count | Number of instances to launch | `number` | `1` | no |
+| ip\_address | (Private) IP address of VM | `list(string)` | `[]` | no |
 | name | Name to be used on all resources as prefix | `string` | n/a | yes |
 | network\_id | The ID of the network to connect this instance to. Changing this forces a new resource to be created. | `string` | n/a | yes |
 | root\_disk\_size | The size of the root disk in gigabytes. | `number` | `0` | no |
@@ -74,5 +74,4 @@ module "cs_instance_cluster" {
 | display\_name | List of display names of instances |
 | id | List of IDs of instances |
 | public\_ip | List of public IP addresses assigned to VMs |
-
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

@@ -86,3 +86,9 @@ variable "disk_offering" {
   type        = string
   default     = ""
 }
+
+variable "ip_address" {
+  description = "(Private) IP address of VM"
+  type        = list(string)
+  default     = []
+}
