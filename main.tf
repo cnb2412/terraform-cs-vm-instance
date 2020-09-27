@@ -17,7 +17,7 @@ resource "cloudstack_instance" "this" {
   zone             = var.zone
   network_id       = var.network_id
   root_disk_size   = var.root_disk_size
-  ip_address       = var.ip_address[count.index]
+  ip_address       = length(var.ip_address) > count.index ? var.ip_address[count.index] : null
   expunge          = true
 }
 
