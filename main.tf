@@ -32,14 +32,14 @@ resource "cloudstack_disk" "this-disk" {
 }
 
 resource "cloudstack_ipaddress" "this-ips" {
-  count      = var.instance_count
+  count      = var.assign_public_ip ? var.instance_count : 0
   network_id = var.network_id
   zone       = var.zone
   vpc_id     = var.vpc_id
 }
 
 resource "cloudstack_static_nat" "default" {
-  count              = var.instance_count
+  count              = var.assign_public_ip ? var.instance_count : 0
   ip_address_id      = cloudstack_ipaddress.this-ips[count.index].id
   virtual_machine_id = cloudstack_instance.this[count.index].id
 }
