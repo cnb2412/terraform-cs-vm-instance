@@ -1,11 +1,17 @@
 name: Terraform security scan
-uses: triat/terraform-security-scan@v2.0.2
-  with:
-    # Whether or not to comment on pull requests.
-    tfsec_actions_comment: # optional, default is true
-    # Terraform working directory.
-    tfsec_actions_working_dir: # optional, default is .
-    # Provide checks via , without space to exclude from run
-    tfsec_exclude: # optional
-    # Specify the version of tfsec to install
-    tfsec_version: # optional
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+jobs:
+  tfsec:
+    name: tfsec
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Terraform security scan
+        uses: triat/terraform-security-scan@v2.0.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
