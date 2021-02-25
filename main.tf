@@ -7,18 +7,19 @@ terraform {
 }
 
 resource "cloudstack_instance" "this" {
-  count            = var.instance_count
-  display_name     = var.instance_count <= 1 ? var.name : "${var.name}-${count.index}"
-  name             = var.instance_count <= 1 ? var.name : "${var.name}-${count.index}"
-  template         = var.template
-  service_offering = var.serviceoffering
-  keypair          = var.sshkey_name
-  user_data        = var.user_data
-  zone             = var.zone
-  network_id       = var.network_id
-  root_disk_size   = var.root_disk_size
-  ip_address       = length(var.ip_address) > count.index ? var.ip_address[count.index] : null
-  expunge          = true
+  count              = var.instance_count
+  display_name       = var.instance_count <= 1 ? var.name : "${var.name}-${count.index}"
+  name               = var.instance_count <= 1 ? var.name : "${var.name}-${count.index}"
+  template           = var.template
+  service_offering   = var.serviceoffering
+  keypair            = var.sshkey_name
+  user_data          = var.user_data
+  zone               = var.zone
+  network_id         = var.network_id
+  root_disk_size     = var.root_disk_size
+  ip_address         = length(var.ip_address) > count.index ? var.ip_address[count.index] : null
+  affinity_group_ids = var.affinity_group_ids
+  expunge            = true
 }
 
 resource "cloudstack_disk" "this-disk" {

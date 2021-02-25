@@ -92,3 +92,8 @@ variable "ip_address" {
   type        = list(string)
   default     = []
 }
+
+variable "affinity_group_ids" {
+  description = "List of affinity group IDs to apply to this instance."
+  default     = []
+}

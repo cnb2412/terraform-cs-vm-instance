@@ -34,11 +34,11 @@ module "cs_instance_cluster" {
 
 
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
 | Name | Version |
 |------|---------|
+| terraform | >= 0.13 |
 | terraform | >= 0.13 |
 
 ## Providers
@@ -51,6 +51,7 @@ module "cs_instance_cluster" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| affinity\_group\_ids | List of affinity group IDs to apply to this instance. | `list` | `[]` | no |
 | assign\_public\_ip | Assign a public IP via static NAT. | `bool` | `false` | no |
 | data\_disks | Number of additional data disks. | `number` | `0` | no |
 | disk\_offering | Disk offering that should be used. | `string` | `""` | no |
@@ -74,4 +75,4 @@ module "cs_instance_cluster" {
 | display\_name | List of display names of instances |
 | id | List of IDs of instances |
 | public\_ip | List of public IP addresses assigned to VMs |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+
